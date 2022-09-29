@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <title>DeCodeX - Cryptage César</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="icon" href="../assets/lock.svg">
+</head>
+<body>
+    <noscript>
+        <div class="unable">
+            <h3>Cette page ne peut pas fonctionner sans JavaScript. Or, ce dernier est désactivé. Veuillez le réactiver pour permettre au site de fonctionner.</h3>
+        </div>
+    </noscript>
+    <div class="a">
+    <h1>Encryptage en code César</h1>
+    <h2>Le code César est un système de cryptage permettant de modifier une lettre vers une autre dans l'alphabet, à l'aide d'un indice de cryptage. Pour un exemple, prenons "césar". Le code supprimera déjà les accents (ces derniers n'étant pas dans l'alphabet), et les remplacera par des lettres classiques, ce qui nous donnera "cesar". Ensuite passons le mot dans l'algorithme, avec un indice de 10. Nous prendrons donc pour chaque lettre celle qui est 10 lettres après dans l'alphabet (C => M; E => O...). Notons que lorsque la dernière lettre est atteinte, il faut retourner au début de l'alphabet. Nous avons donc pour Cesar le résultat: "MOCKB". Le résultat est donné en majuscules.</h2>
+</div>
+    <ul id="body"></ul>
+    <form id="form" action="">
+        <input type="text" id="text" placeholder="Texte à encrypter" autocomplete="off" required>
+        <input type="number" min="1" max="25" id="encrypt" placeholder="Indice de cryptage" autocomplete="off" required>
+    <button style="cursor: pointer;" title="Exécuter">Exécuter</button>
+</form>
+</body>
+<script>
+   let form = document.getElementById("form")
+    form.addEventListener("submit",function decryptincesar(wordt){
+        wordt.preventDefault()
+        let div = document.getElementById("body")
+        const word = document.getElementById("text").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    const encryptnmb = document.getElementById("encrypt").value
+let finalarray = []
+word.toUpperCase().split('').forEach((crypted)=>{
+    if(!alphabet.includes(crypted)) return;
+    let place = alphabet.indexOf(crypted)
+    let finalnmb = +place + +encryptnmb
+    let final = alphabet[finalnmb]
+    if(!final){
+    let errornb = encryptnmb-alphabet.reverse().indexOf(crypted)
+    alphabet.reverse()
+    final = alphabet[errornb-1]
+    }
+    finalarray.push(final)
+})
+let nb = finalarray.join('').toString()
+console.log(nb)
+let copy = document.createElement('button')
+copy.id = "copybutton"
+copy.textContent = `Copier`
+copy.title = "Copier le résultat"
+function outFunc() {
+  var copy = document.getElementById("copybutton");
+  copy.textContent = "Copier";
+  copy.title = "Copier le résultat";
+}
+function onClick(){
+    var copyText = document.getElementById("callback");
+    navigator.clipboard.writeText(copyText.textContent);
+    var copy = document.getElementById("copybutton");
+  copy.textContent = "Copié !";
+  copy.title = "Résultat copié !";
+}
+copy.addEventListener("click",onClick, false)
+copy.addEventListener("mouseleave",outFunc, false)
+let callback = document.createElement('h3')
+callback.id = "callback"
+callback.textContent = nb
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.appendChild(callback)
+div.appendChild(copy)
+    })
+</script>
+<img src="../assets/icon-github.png" style="cursor: pointer; height: 4%;" onclick="window.open('https://github.com/A-Beille/DeCodeX','_blank')" id="footer">

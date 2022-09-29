@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(34, 39, 44);
+    color: white;
+    font-family: system-ui
+    
+}
+      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+      #form {  padding: 0.25rem;  display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #encrypt { border: none; padding: 0 1rem; border-radius: 2rem; margin: 0.25rem; }
+      #encrypt:focus { outline: none; }
+      #text { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #text:focus { outline: none; }
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; transition: 100ms;}
+      #form > button:hover { background: rgb(48, 46, 46); border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; transition: 100ms;}
+#vc{cursor: pointer;}
+      #copybutton {   background-color:  #5865F2 ;
+text-align: center;
+border-radius: 5px;
+border: 0px solid;
+padding: 19px 10px;
+width: 250px;
+color: white;
+font-size: 105%;
+cursor: pointer;
+transition: 100ms;}
+#copybutton:hover{
+    background-color:#4b55c9;
+text-align: center;
+border-radius: 5px;
+border: 0px solid;
+padding: 19px 10px;
+width: 250px;
+color: white;
+font-size: 105%;
+cursor: pointer;
+transition: 100ms;
+}
+div.a{
+    text-align: center;
+}
+div.unable{
+    text-align: center;
+    background-color: rgb(253, 76, 76);
+display:flow-root;
+}
+#footer{
+    position: fixed;
+    bottom: 0;
+}
