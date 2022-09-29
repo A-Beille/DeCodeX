@@ -38,4 +38,3 @@ function decryptincesar(wordte, encrypt){
     console.log(finalarray.join('').toString())
 }
     }
-    decryptincesar()
