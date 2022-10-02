@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <title>DeCodeX - Cryptage César</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="icon" href="../assets/lock.svg">
+</head>
+<body>
+    <noscript>
+        <div class="unable">
+            <h3>Cette page ne peut pas fonctionner sans JavaScript. Or, ce dernier est désactivé. Veuillez le réactiver pour permettre au site de fonctionner.</h3>
+        </div>
+    </noscript>
+    <div class="a">
+    <h1>Encryptage en code Vernam</h1>
+    <h2>Le code Vernam ou masque jetable est un système de cryptage utilisant une clé de décryptage. Ce code identifiera chaque lettre du mot à encrypter à son emplacement dans l'alphabet, puis fera de même avec la clé générée aléatoirement. Ensuite, les valeurs obtenus seront additionnées, puis passées au modulo 26, puis le résultat de cette opération effectuée pour chaque lettre, une fois remise par rapport aux numéro des lettres de l'alphabet, donnera le résultat. Par exemple, prenons le mot "masque", avec la clé RYDSFP. Le résultat en suivant les calculs sera DYVIZT. Pour plus d'informations, rendez vous sur la page Wikipédia à propos de ce système: <a href="https://fr.wikipedia.org/wiki/Masque_jetable" target="_blank">https://fr.wikipedia.org/wiki/Masque_jetable</a>.</h2>
+</div>
+    <ul id="body"></ul>
+    <form id="form" action="">
+        <input type="text" id="text" placeholder="Texte à encrypter" autocomplete="off" required>
+    <button style="cursor: pointer;" title="Exécuter">Exécuter</button>
+</form>
+</body>
+<script>
+   let form = document.getElementById("form")
+    form.addEventListener("submit",function vernam(wordt){
+        wordt.preventDefault()
+        const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+        let word = document.getElementById("text").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()
+        let keyarray = []
+        for(let i = 0;i<word.length;i++){
+            let gen = Math.floor(Math.random() * (27 - 0)) + 0
+            keyarray.push(alphabet[gen])
+        }
+        let key = keyarray.join('').toString()
+        let finalarray = []
+        let arraycrypt0 = []
+        let arraykey = []
+        let x = 0
+        let y = 0
+        let lenghtarray = []
+        word.toUpperCase().split('').forEach(character=>{
+            lenghtarray.push(x)
+            x++
+            if(!alphabet.includes(character)) return;
+            arraycrypt0.push(alphabet.indexOf(character))
+        })
+        key.toUpperCase().split('').forEach(character=>{
+            if(!alphabet.includes(character)) return;
+            arraykey.push(alphabet.indexOf(character))
+        })
+arraycrypt0.forEach((number)=>{
+let nbtc = number+arraykey[lenghtarray[y]]
+let final0 = ((nbtc % 26 ) + 26 ) % 26
+let final = alphabet[final0]
+finalarray.push(final)
+y++
+})
+let nb = finalarray.join('').toString()+` (clé de décryptage: ${key})`
+let div = document.getElementById("body")
+let copy = document.createElement('button')
+copy.id = "copybutton"
+copy.textContent = `Copier`
+copy.title = "Copier le résultat"
+function outFunc() {
+  var copy = document.getElementById("copybutton");
+  copy.textContent = "Copier";
+  copy.title = "Copier le résultat";
+}
+function onClick(){
+    var copyText = document.getElementById("callback");
+    navigator.clipboard.writeText(copyText.textContent);
+    var copy = document.getElementById("copybutton");
+  copy.textContent = "Copié !";
+  copy.title = "Résultat copié !";
+}
+copy.addEventListener("click",onClick, false)
+copy.addEventListener("mouseleave",outFunc, false)
+let callback = document.createElement('h3')
+callback.id = "callback"
+callback.textContent = nb
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.appendChild(callback)
+div.appendChild(copy)
+    })
+</script>
+<img src="../assets/icon-github.png" style="cursor: pointer; height: 4%;" onclick="window.open('https://github.com/A-Beille/DeCodeX','_blank')" id="footer">

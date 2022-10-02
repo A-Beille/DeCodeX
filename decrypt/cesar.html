@@ -29,7 +29,7 @@
     form.addEventListener("submit",function decryptincesar(wordt){
         wordt.preventDefault()
         let div = document.getElementById("body")
-        const word = document.getElementById("text").value
+        const word = document.getElementById("text").value.trim()
 div.childNodes.forEach(child=>{
     div.removeChild(child)
 })

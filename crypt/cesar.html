@@ -25,12 +25,12 @@
 </body>
 <script>
    let form = document.getElementById("form")
-    form.addEventListener("submit",function decryptincesar(wordt){
+    form.addEventListener("submit",function cryptincesar(wordt){
         wordt.preventDefault()
         let div = document.getElementById("body")
-        const word = document.getElementById("text").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        const word = document.getElementById("text").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()
     const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    const encryptnmb = document.getElementById("encrypt").value
+    const encryptnmb = document.getElementById("encrypt").value.trim()
 let finalarray = []
 word.toUpperCase().split('').forEach((crypted)=>{
     if(!alphabet.includes(crypted)) return;
@@ -45,7 +45,6 @@ word.toUpperCase().split('').forEach((crypted)=>{
     finalarray.push(final)
 })
 let nb = finalarray.join('').toString()
-console.log(nb)
 let copy = document.createElement('button')
 copy.id = "copybutton"
 copy.textContent = `Copier`
