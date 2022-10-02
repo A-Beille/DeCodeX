@@ -15,10 +15,12 @@
     <div class="a">
     <h1>Encryptage en code Vernam</h1>
     <h2>Le code Vernam ou masque jetable est un système de cryptage utilisant une clé de décryptage. Ce code identifiera chaque lettre du mot à encrypter à son emplacement dans l'alphabet, puis fera de même avec la clé générée aléatoirement. Ensuite, les valeurs obtenus seront additionnées, puis passées au modulo 26, puis le résultat de cette opération effectuée pour chaque lettre, une fois remise par rapport aux numéro des lettres de l'alphabet, donnera le résultat. Par exemple, prenons le mot "masque", avec la clé RYDSFP. Le résultat en suivant les calculs sera DYVIZT. Pour plus d'informations, rendez vous sur la page Wikipédia à propos de ce système: <a href="https://fr.wikipedia.org/wiki/Masque_jetable" target="_blank">https://fr.wikipedia.org/wiki/Masque_jetable</a>.</h2>
+    <h3>Laissez la clé de décryptage vierge pour avoir une clé aléatoire</h3>
 </div>
     <ul id="body"></ul>
     <form id="form" action="">
         <input type="text" id="text" placeholder="Texte à encrypter" autocomplete="off" required>
+        <input type="text" id="encrypt" placeholder="Clé de décryptage" autocomplete="off">
     <button style="cursor: pointer;" title="Exécuter">Exécuter</button>
 </form>
 </body>
@@ -28,12 +30,15 @@
         wordt.preventDefault()
         const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
         let word = document.getElementById("text").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()
+        let key = document.getElementById("encrypt").value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toUpperCase()
+        if(!key){
         let keyarray = []
         for(let i = 0;i<word.length;i++){
             let gen = Math.floor(Math.random() * (27 - 0)) + 0
             keyarray.push(alphabet[gen])
         }
-        let key = keyarray.join('').toString()
+        key = keyarray.join('').toString()
+    }
         let finalarray = []
         let arraycrypt0 = []
         let arraykey = []
