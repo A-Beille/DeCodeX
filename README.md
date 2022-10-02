@@ -11,8 +11,10 @@
     <h2>DeCodeX est un système permettant de crypter ou décrypter des textes ou mots. Il est disponible sur <a href="https://decodex.abey1.repl.co/">https://decodex.abey1.repl.co/</a>.</h2>
 </div>
 <h2>Liste des systèmes de cryptage:</h2>
-<h3><a href="https://decodex.abey1.repl.co/crypt/cesar.html">Encryptage en code César</a></h3>
+<h3><a href="./crypt/cesar.html">Encryptage en code César</a></h3>
+<h3><a href="./crypt/vernam.html">Encryptage en code Vernam (masque jetable)</a></h3>
 <h2>Liste des systèmes de décryptage:</h2>
-<h3><a href="https://decodex.abey1.repl.co/decrypt/cesar.html">Décryptage en code César</a></h3>
+<h3><a href="./decrypt/cesar.html">Décryptage en code César</a></h3>
+<h3><a href="./decrypt/vernam.html">Décryptage en code Vernam (masque jetable)</a></h3>
 </body>
     </html>
