@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <title>DeCodeX - Cryptage SHA-256</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="icon" href="../assets/lock.svg">
+</head>
+<body>
+    <noscript>
+        <div class="unable">
+            <h3>Cette page ne peut pas fonctionner sans JavaScript. Or, ce dernier est désactivé. Veuillez le réactiver pour permettre au site de fonctionner.</h3>
+        </div>
+    </noscript>
+    <div class="a">
+    <h1>Encryptage en SHA-256</h1>
+    <h2>Le SHA-256 (Secure Hash Algorithm) est un algorithme inventé par la <a href="https://fr.wikipedia.org/wiki/National_Security_Agency">NSA</a> américaine. Plus complexe que les autres, pour avoir un résumé complet, dirigez vous sur la <a href="https://fr.wikipedia.org/wiki/SHA-2">page Wikipédia correspondante</a>.</h2>
+</div>
+    <ul id="body"></ul>
+    <form id="form" action="">
+        <input type="text" id="text" placeholder="Texte à encrypter" autocomplete="off" required>
+    <button style="cursor: pointer;" title="Exécuter">Exécuter</button>
+</form>
+</body>
+<script>
+   let form = document.getElementById("form")
+    form.addEventListener("submit",function cryptinsha(wordt){
+        wordt.preventDefault()
+        let word = document.getElementById("text").value.trim()
+        function sha256(str) {
+    var buffer = new TextEncoder("utf-8").encode()
+    return crypto.subtle.digest("SHA-256", buffer).then(function(hash) {
+      return hex(hash)
+    })
+  }
+  function hex(buffer) {
+    var digest = String.prototype
+    var view = new DataView(buffer)
+    for(var i = 0; i < view.byteLength; i += 4) {
+      var value = view.getUint32(i)
+      var string = value.toString(16)
+      var pad0 = '00000000'
+      var padv = (pad0 + string).slice(-pad0.length)
+      digest += padv
+    }
+    
+    return digest
+  }
+  
+  sha256(word).then(function(digest) {
+    let nb = digest
+    let div = document.getElementById("body")
+let copy = document.createElement('button')
+copy.id = "copybutton"
+copy.textContent = `Copier`
+copy.title = "Copier le résultat"
+function outFunc() {
+  var copy = document.getElementById("copybutton");
+  copy.textContent = "Copier";
+  copy.title = "Copier le résultat";
+}
+function onClick(){
+    var copyText = document.getElementById("callback");
+    navigator.clipboard.writeText(copyText.textContent);
+    var copy = document.getElementById("copybutton");
+  copy.textContent = "Copié !";
+  copy.title = "Résultat copié !";
+}
+copy.addEventListener("click",onClick, false)
+copy.addEventListener("mouseleave",outFunc, false)
+let callback = document.createElement('h3')
+callback.id = "callback"
+callback.textContent = nb
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.childNodes.forEach(child=>{
+    div.removeChild(child)
+})
+div.appendChild(callback)
+div.appendChild(copy)
+  })
+    })
+</script>
+<img src="../assets/icon-github.png" style="cursor: pointer; height: 4%;" onclick="window.open('https://github.com/A-Beille/DeCodeX','_blank')" id="footer">

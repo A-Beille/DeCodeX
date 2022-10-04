@@ -1,4 +1,5 @@
 //Code de l'algorithme. Vous pouvez l'utiliser pour vos projets personnels.
+const crypto = require("node:crypto")
 function cryptincesar(wordte, encrypt){
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 const word = wordte.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -105,3 +106,4 @@ y++
 })
 console.log(finalarray.join('').toString())
     }
+//SHA256 disponible uniquement sur Web

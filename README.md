@@ -13,6 +13,7 @@
 <h2>Liste des systèmes de cryptage:</h2>
 <h3><a href="https://decodex.abey1.repl.co/crypt/cesar.html">Encryptage en code César</a></h3>
 <h3><a href="https://decodex.abey1.repl.co/crypt/vernam.html">Encryptage en code Vernam (masque jetable)</a></h3>
+<h3><a href="https://decodex.abey1.repl.co/crypt/sha256.html">Encryptage en SHA-256</a></h3>
 <h2>Liste des systèmes de décryptage:</h2>
 <h3><a href="https://decodex.abey1.repl.co/decrypt/cesar.html">Décryptage en code César</a></h3>
 <h3><a href="https://decodex.abey1.repl.co/decrypt/vernam.html">Décryptage en code Vernam (masque jetable)</a></h3>
