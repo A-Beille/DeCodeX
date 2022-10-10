@@ -22,34 +22,16 @@
     <button style="cursor: pointer;" title="Exécuter">Exécuter</button>
 </form>
 </body>
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/js-sha256/build/sha256.min.js"></script>
+<script>method = sha256;</script>
 <script>
    let form = document.getElementById("form")
     form.addEventListener("submit",function cryptinsha(wordt){
         wordt.preventDefault()
         let word = document.getElementById("text").value.trim()
-        function sha256(str) {
-    var buffer = new TextEncoder("utf-8").encode()
-    return crypto.subtle.digest("SHA-256", buffer).then(function(hash) {
-      return hex(hash)
-    })
-  }
-  function hex(buffer) {
-    var digest = String.prototype
-    var view = new DataView(buffer)
-    for(var i = 0; i < view.byteLength; i += 4) {
-      var value = view.getUint32(i)
-      var string = value.toString(16)
-      var pad0 = '00000000'
-      var padv = (pad0 + string).slice(-pad0.length)
-      digest += padv
-    }
-    
-    return digest
-  }
-  
-  sha256(word).then(function(digest) {
-    let nb = digest
-    let div = document.getElementById("body")
+        let nb = sha256(word)
+        let div = document.getElementById("body")
 let copy = document.createElement('button')
 copy.id = "copybutton"
 copy.textContent = `Copier`
@@ -80,6 +62,5 @@ div.childNodes.forEach(child=>{
 div.appendChild(callback)
 div.appendChild(copy)
   })
-    })
   </script><img src="../assets/icon-github.png" style="cursor: pointer; height: 4%;" onclick="window.open('https://github.com/A-Beille/DeCodeX','_blank')" id="footer">
 <img src="../assets/greylock.svg" style="cursor: pointer; height: 4%; margin-left: 30px;" onclick="window.open('https://decodex.abey1.repl.co','_blank')" id="footer">
